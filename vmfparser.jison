@@ -1,7 +1,3 @@
-//This parser was originally written for C so the format is really weird for javascript
-//an object is defined as a keyval and another object - basically a linked list
-//a keyval is defined as a string key, a string_val or obj_val, and a boolean isStringVal
-//note that the quotation marks used in object names are kept
 
 /* lexical grammar */
 %lex
@@ -80,6 +76,10 @@ wordthing:
 	WORD
 	{
 		//console.log("word found: " + yytext);
-		$$ = yytext;
+		if(yytext[0]==="\"" && yytext[yytext.length-1]==="\""){
+			$$ = yytext.substring(1,yytext.length-1); 
+		}else{
+			$$ = yytext;
+		}
 	}
 	;

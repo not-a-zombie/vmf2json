@@ -125,7 +125,11 @@ break;
 case 7:
 
 		//console.log("word found: " + yytext);
-		this.$ = yytext;
+		if(yytext[0]==="\"" && yytext[yytext.length-1]==="\""){
+			this.$ = yytext.substring(1,yytext.length-1); 
+		}else{
+			this.$ = yytext;
+		}
 	
 break;
 }
